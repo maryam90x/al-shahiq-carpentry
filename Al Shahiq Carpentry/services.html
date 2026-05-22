@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- This helps us display out content in mobile browsing -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Our Services | Al Shahiq Carpentry</title>
+ 
+  <!-- Here im calling different font families directly from google -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Jost:wght@400;500&display=swap" 
+  rel="stylesheet"/>
+
+
+  <style>
+    /* css styling starting here */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: #F5F0E6;
+      font-family: Jost, sans-serif;
+      color: #4A3F30;
+    }
+
+    /* the navigation bar */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: #F5F0E6;
+      border-bottom: 1px solid #DDD5C4;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* i Added a light shadow to separate it from the page content when scrolling */
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 48px;
+    }
+
+    nav img { height: 52px; }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 4px;
+    }
+
+    nav ul a {
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      color: #4A3F30;
+      padding: 8px 16px;
+      border-radius: 999px;
+    }
+
+    nav ul a:hover,  /* Hovering effect */
+    nav ul a.active {
+      background: #B8983E;
+      color: #FFFDF8;
+    }
+     
+     /* MY favourite part */
+    .thicker-hr {
+            border: none;       /* Removes default border */
+            height: 1px;        /* Set thickness */
+            background-color: #4B3621;
+            border-radius: 3px; 
+                      
+        }
+
+    /* here is the page header */
+    #page-header {
+      margin-top: 77px;
+      text-align: center;
+      padding: 48px 24px 32px;
+    }
+
+    #page-header h1 {
+      font-family: Cormorant Garamond, serif;
+      font-size: 40px;
+      color: #3B2F1E;
+    }
+
+    hr { border: none; border-top: 1px solid #DDD5C4; width: 85%; margin: 0 auto; }
+
+    /* services list */
+    #services {
+      padding: 40px 80px;
+    }
+
+    .service-row {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 24px 0;
+      border-bottom: 1px solid #000000;
+    }
+
+    .service-row img {
+      width: 120px;
+      height: 130px;
+      object-fit: cover;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+
+    .service-info {
+      flex: 1;
+    }
+
+    .service-info h3 {
+      font-family: Cormorant Garamond, serif;
+      font-size: 25px;
+      color: #3B2F1E;
+      margin-bottom: 26px;
+    }
+
+    .service-info p {
+      font-size: 15px;
+      color: #7A6A52;
+      line-height: 1.6;
+    }
+
+    .inquiry-button {
+      background: #B8983E;
+      color: #FFFDF8;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 10px 24px;
+      border-radius: 999px;
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .inquiry-button:hover { background: #D4AF5A; }
+
+    /*cutom design section */
+    #custom-design {
+      text-align: center;
+      padding: 52px 24px 48px;
+    }
+
+    #custom-design h2 {
+      font-family: Cormorant Garamond, serif;
+      font-size: 28px;
+      color: #3B2F1E;
+      margin-bottom: 20px;
+    }
+
+    .button-order {
+      background: #B8983E;
+      color: #FFFDF8;
+      font-size: 15px;
+      font-weight: 500;
+      padding: 14px 36px;
+      border-radius: 999px;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .button-order:hover { background: #D4AF5A; }
+
+    /* FOOTER */
+    footer {
+      background: #3B2F1E;
+      color: #FFFDF8;
+      padding: 48px 48px 24px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 32px;
+    }
+
+    .footer-col h4 {
+      font-family: Cormorant Garamond, serif;
+      font-size: 18px;
+      color: #D4AF5A;
+      margin-bottom: 14px;
+    }
+
+    .footer-col p,
+    .footer-col a {
+      font-size: 13px;
+      color: rgba(255,253,248,0.70);
+      text-decoration: none;
+      line-height: 1.9;
+    }
+
+    .contact-links { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+
+    .contact-links a:hover { color: #D4AF5A; }
+
+    .button-whatsapp {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #25D366;
+      color: white;
+      font-size: 13px;
+      padding: 10px 20px;
+      border-radius: 999px;
+      text-decoration: none;
+    }
+
+    .button-whatsapp:hover { background: #1ebe5a; }
+
+    .newsletter-form {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .newsletter-form input {
+      flex: 1;
+      padding: 10px 16px;
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.20);
+      border-radius: 999px;
+      color: white;
+      font-size: 13px;
+      font-family: Jost, sans-serif;
+      outline: none;
+    }
+
+    .newsletter-form input::placeholder { color: rgba(255,255,255,0.40); }
+
+    .newsletter-form button {
+      background: #B8983E;
+      color: white;
+      border: none;
+      border-radius: 999px;
+      padding: 10px 22px;
+      font-size: 13px;
+      font-family: Jost, sans-serif;
+      cursor: pointer;
+    }
+
+    .newsletter-form button:hover { background: #D4AF5A; }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.10);
+      padding-top: 16px;
+      text-align: center;
+      font-size: 12px;
+      color: rgba(255,253,248,0.40);
+    }
+
+    .social-icons { display: flex; gap: 10px; margin-top: 12px; }
+
+    .social-icons a {
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.10);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    .social-icons a:hover { background: #B8983E; }
+
+    /* Phone version */
+    @media screen and (max-width: 600px) {
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 12px 20px;
+        gap: 10px;
+      }
+
+      nav ul { flex-wrap: wrap; gap: 4px; }
+
+      nav ul a { font-size: 12px; padding: 6px 10px; }
+
+      #page-header { margin-top: 110px; }
+
+      #page-header h1 { font-size: 28px; }
+
+      #services { padding: 24px 20px; }
+
+      .service-row { flex-wrap: wrap; }
+
+      .service-row img { width: 100%; height: 160px; }
+
+      .inquiry-button { width: 100%; text-align: center; }
+
+      .footer-grid { grid-template-columns: 1fr; }
+
+      footer { padding: 32px 20px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- navigation bar -->
+<nav>
+    <img src="logo.jpg">
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="services.html" class="active">Services</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- pager header -->
+<section id="page-header">
+  <h1>Our Services</h1>
+</section>
+
+<hr class="thicker-hr">
+
+<!-- services list -->
+<section id="services">
+
+  <div class="service-row">
+ <img src="custom-furniture.avif" alt="Carpenter cutting wood">
+    <div class="service-info">
+      <h3>Custom Furniture</h3>
+      <p>Furniture designed and built to match your needs and space.</p>
+    </div>
+    <a href="contact.html" class="inquiry-button">Inquiry</a>
+  </div>
+
+
+  <div class="service-row">
+<img src="funiture-repair.jpg" alt="Carpenter Repairing Table">
+    <div class="service-info">
+      <h3>Furniture Repair</h3>
+      <p>Repair and restore damaged furniture to look and work like new.</p>
+    </div>
+    <a href="contact.html" class="inquiry-button">Inquiry</a>
+  </div>
+
+  <div class="service-row">
+<img src="home-installation.jpg" alt="Carpenter installing funiture">
+    <div class="service-info">
+      <h3>Home Installation</h3>
+      <p>Professional furniture installation at your home for perfect fitting.</p>
+    </div>
+    <a href="contact.html" class="inquiry-button">Inquiry</a>
+  </div>
+
+  <div class="service-row">
+<img src="wood-polishing.jpg" alt="Carpenter polishing wood">
+    <div class="service-info">
+      <h3>Wood Polishing</h3>
+      <p>Enhance shine and protect wood with professional polishing.</p>
+    </div>
+    <a href="contact.html" class="inquiry-button">Inquiry</a>
+  </div>
+
+  <div class="service-row" style="border-bottom: none;">
+<img src="material-catalog.jpg" alt="Funiture Material Catalog">
+    <div class="service-info">
+      <h3>Material Catalog</h3>
+      <p>Choose from a variety of wood finishes, fabrics, and colors.</p>
+    </div>
+    <a href="contact.html" class="inquiry-button">Inquiry</a>
+  </div>
+
+</section>
+
+<hr class="thicker-hr">
+
+<!-- Custom design section -->
+<section id="custom-design">
+  <h2>Request Custom Design</h2>
+  <a href="contact.html" class="button-order">Order Now</a>
+</section>
+
+<!-- Page footer t-->
+<footer id="contact">
+  <div class="footer-grid">
+
+    <div class="footer-col">
+      <h4>Quick Contact</h4>
+      <div class="contact-links">
+        <a href="tel:+97156647974">&#128222; +971 56 647 9740</a>
+        <a href="mailto:info@alshahiqcarpentry.com">&#9993; info@alshahiqcarpentry.com</a>
+      </div>
+      <a class="button-whatsapp" href="https://wa.me/97156647974" target="_blank">
+        &#128172; Message us on WhatsApp
+      </a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Newsletter</h4>
+      <p>Subscribe for exclusive updates, new arrivals &amp; insider only discounts</p>
+      <div class="newsletter-form">
+        <input type="email" id="emailInput" placeholder="Enter your email address" />
+        <button onclick="subscribe()">Subscribe</button>
+      </div>
+      <p style="margin-top:18px; color:rgba(255,253,248,0.55); font-size:13px;">Follow Us</p>
+      <div class="social-icons">
+        <a href="https://www.instagram.com/maft_furniture/" target="_blank" title="Instagram">&#128247;</a>
+        <a href="https://www.facebook.com/people/Al-Shahiq-Carpentry/100080266914297/?locale=gn_PY#" target="_blank" title="Facebook">f</a>
+      </div>
+    </div>
+
+  </div>
+  <div class="footer-bottom">&copy; Al Shahiq Carpentry. All Rights Reserved.</div>
+</footer>
+
+<script>
+  // Highlights active nav link when clicked
+  document.querySelectorAll("nav ul a").forEach(function(link) {
+    link.addEventListener("click", function() {
+      document.querySelectorAll("nav ul a").forEach(function(l) {
+        l.classList.remove("active");
+      });
+      this.classList.add("active");
+    });
+  });
+
+  //  subscribe button
+  function subscribe() {
+    var email = document.getElementById("emailInput").value;
+    if (email === "" || !email.includes("@")) {
+      alert("Please enter a valid email address.");
+    } else {
+      alert("Thank you for subscribing!");
+      document.getElementById("emailInput").value = "";
+    }
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- This helps us display out content in mobile browsing -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Al Shahiq Carpentry</title>
+
+  <!-- Here im calling different font families directly from google -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Jost:wght@400;500&display=swap" 
+  rel="stylesheet"/>
+
+
+  <style>
+    
+    /* Basic css styling */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: #F5F0E6;
+      font-family: Jost, sans-serif;
+      color: #4A3F30;
+    }
+
+    /* styling for navigation bar  */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: #F5F0E6;
+      border-bottom: 1px solid #DDD5C4;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* i Added a light shadow to separate it from the page content when scrolling */
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 48px;
+    }
+
+    nav img { height: 52px; }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 4px;
+    }
+
+    nav ul a {
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      color: #4A3F30;
+      padding: 8px 16px;
+      border-radius: 999px;
+    }
+
+    nav ul a:hover,
+    nav ul a.active {
+      background: #B8983E;
+      color: #FFFDF8;
+    }
+
+    /* Main/hero image of thr page */
+    #hero {
+      margin-top: 77px;
+      height: 480px;
+    }
+
+    #hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Main SECTION */
+    #headline {
+      text-align: center;
+      padding: 56px 24px 40px;
+    }
+
+    #headline h1 {
+      font-family: Cormorant Garamond, serif;
+      font-size: 40px;
+      color: #3B2F1E;
+      margin-bottom: 24px;
+    }
+
+    #headline p {
+      color: #7A6A52;
+      font-size: 14px;
+      margin-top: 24px;
+    }
+
+    .order-button {
+      background: #B8983E;
+      color: #FFFDF8;
+      font-size: 15px;
+      font-weight: 500;
+      padding: 14px 36px;
+      border-radius: 999px;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .order-button:hover { background: #D4AF5A; }
+
+    hr { border: none; border-top: 1px solid #DDD5C4; width: 85%; margin: 0 auto; }
+
+    /* Different sections titles styling is done here */
+    .section-title {
+      font-family: Cormorant Garamond, serif;
+      font-size: 30px;
+      color: #3B2F1E;
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    /* gallery styling */
+    #gallery { padding: 52px 48px; }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .gallery-grid img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      border-radius: 4px;
+      cursor: pointer;
+      display: block;
+    }
+
+    .gallery-grid img:hover { opacity: 0.85; }
+
+    /* I really like this idea of a picture viewer. It is called a lightbox. 
+    This shows you images in a popup that takes up the whole screen. 
+    While it makes the webpage, in the background dimmer */
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(30,20,10,0.90);
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+    }
+
+    #lightbox.open { display: flex; }
+
+    #lightbox img {
+      max-width: 90vw;
+      max-height: 85vh;
+      border-radius: 6px;
+    }
+
+    #lightbox span {
+      position: absolute;
+      top: 20px; right: 30px;
+      font-size: 36px;
+      color: white;
+      cursor: pointer;
+    }
+
+    /* Website reviews section */
+    #reviews { padding: 52px 48px; }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .review-card {
+      background: #FFFDF8;
+      border: 1px solid #DDD5C4;
+      border-radius: 8px;
+      padding: 24px 28px;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .review-card:hover {
+      border-color: #B8983E;
+    }
+
+    .reviewer {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+        /* Profile image of the reviwer , but here its just a circle with a letter */
+
+    .pfp {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: #DDD5C4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Cormorant Garamond, serif;
+      font-size: 18px;
+      color: #7A6A52;
+    }
+
+    .stars { color: #B8983E; font-size: 18px; margin-bottom: 8px; }
+
+    .review-card p {
+      font-size: 13px;
+      color: #7A6A52;
+      line-height: 1.7;
+      font-style: italic;
+    }
+
+    /*FOoter section  */
+    footer {
+      background: #3B2F1E;
+      color: #FFFDF8;
+      padding: 48px 48px 24px;
+      margin-top: 40px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 32px;
+    }
+
+    .footer-col h4 {
+      font-family: Cormorant Garamond, serif;
+      font-size: 18px;
+      color: #D4AF5A;
+      margin-bottom: 14px;
+    }
+
+    .footer-col p, .footer-col a {
+      font-size: 13px;
+      color: rgba(255,253,248,0.70);
+      text-decoration: none;
+      line-height: 1.9;
+    }
+     /*footer contact section */
+    .contact-links { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+
+    .contact-links a:hover { color: #D4AF5A; }
+
+    .button-whatsapp {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #25D366;
+      color: white;
+      font-size: 13px;
+      padding: 10px 20px;
+      border-radius: 999px;
+      text-decoration: none;
+    }
+
+    .button-whatsapp:hover { background: #1ebe5a; }
+
+    .newsletter-form {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .newsletter-form input {
+      flex: 1;
+      padding: 10px 16px;
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.20);
+      border-radius: 999px;
+      color: white;
+      font-size: 13px;
+      font-family: Jost, sans-serif;
+      outline: none;
+    }
+
+    .newsletter-form input::placeholder { color: rgba(255,255,255,0.40); }
+
+    .newsletter-form button {
+      background: #B8983E;
+      color: white;
+      border: none;
+      border-radius: 999px;
+      padding: 10px 22px;
+      font-size: 13px;
+      font-family: Jost, sans-serif;
+      cursor: pointer;
+    }
+
+    .newsletter-form button:hover { background: #D4AF5A; }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.10);
+      padding-top: 16px;
+      text-align: center;
+      font-size: 12px;
+      color: rgba(255,253,248,0.40);
+    }
+
+    .social-icons { display: flex; gap: 10px; margin-top: 12px; }
+
+    .social-icons a {
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.10);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    .social-icons a:hover { background: #B8983E; }
+
+
+  /* if the screen is 600 pixels wide or less (basically when the website is viewed in a smaller screen) */
+  
+  @media screen and (max-width: 600px)     /* stole this from my teachers code  */ 
+{
+    /* styling of smaller screen  */
+ 
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px 20px;
+    gap: 10px;
+  }
+
+  nav ul {
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  nav ul a {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+
+  
+  #hero {
+    margin-top: 110px;
+    height: 220px;
+  }
+
+  /* smaller font */
+  #headline h1 {
+    font-size: 26px;
+  }
+
+  /* Gallery is now gonna be 1 column instead of 3 */
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /*and reviews is 1 column instead of 2 */
+  .reviews-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* same for footer*/
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  footer {
+    padding: 32px 20px 20px;
+  }
+
+  /* less side padding */
+  #gallery, #reviews {
+    padding: 36px 20px;
+  }
+
+}
+
+  </style>
+ </head>
+<body>
+
+<!-- Here is the navgation bar -->
+<nav>
+  <img src="logo.jpg" alt="Al Shahiq Carpentry" />
+  <ul>
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- Main page image -->
+<section id="hero">
+  <img src ="Index1.jpg" alt= "Main Bedroom Image" />
+ </section>
+
+<!-- Intro section -->
+<section id="headline">
+  <h1>Custom Furniture & Carpentry</h1>
+  <a href="services.html" class="order-button">Order Now</a> <!--The button-->
+  <p>Quality craftsmanship for your home and office. Custom-made furniture tailored to your needs.</p>
+</section>
+
+<hr />
+
+<!-- next 3 images -->
+<section id="gallery">
+  <h2 class="section-title">&#8212; Featured Gallery &#8212;</h2>
+  <div class="gallery-grid" >
+    <img src ="Index2.jpg" alt= "Here is an image of sofas" onclick="openLightbox(this)">
+    <img src ="Index3.jpg" alt= "Here is an image of a closet" onclick="openLightbox(this)">
+    <img src ="Index4.jpg" alt= "Here is an image of a bed" onclick="openLightbox(this)">
+  </div>
+</section>
+
+<!-- Lightbox HTML Template -->
+<div id="lightbox">
+  <span onclick="closeLightbox()">&times;</span>
+  <!-- i Kept the src empty. JavaScript will fill this in automatically on click -->
+  <img id="lightbox-img" src="" alt="Lightbox View" />
+</div>
+<hr />
+
+<!-- the reviews section is directly link to actual google reviews -->
+<section id="reviews">
+  <h2 class="section-title">&#8212; Customer Reviews &#8212;</h2>
+  <div class="reviews-grid">
+
+    <a class="review-card" href="https://share.google/x67qVQe1G1yx03YWc" target="_blank">
+      <div class="reviewer">
+        <div class="pfp">M</div>
+        <strong>Maryam A.</strong> <!-- pfp image -->
+      </div>
+      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p>"Excellent work, they pay attention to details. 
+        The custom furniture I ordered was perfectly made and, and the delivery service was great. Highly recommended."</p>
+    </a>
+
+    <a class="review-card" href="https://share.google/dOniuRAdx5gqoSa1w" target="_blank">
+      <div class="reviewer">
+        <div class="pfp">E</div>
+        <strong>ENRICO G.</strong>
+      </div>
+      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p>"The best carpentry shop in the area. The carpenters are friendly, skilled, and experienced.
+         The owner, Mr. Abdul Rehman, is very professional and helpful. I highly recommend this shop and give it a five-star rating."</p>
+    </a>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="footer-grid">
+
+    <div class="footer-col">
+      <h4>Quick Contact</h4>
+      <div class="contact-links">
+        <a href="tel:+971566479740">&#128222; +971 56 647 9740</a> <!-- HTML character entity for phone call emoji -->
+        <a href="mailto:info@alshahiqcarpentry.com">&#9993; info@alshahiqcarpentry.com</a>
+      </div>
+      <a class="button-whatsapp" href="https://wa.me/97156647974" target="_blank">
+        &#128172; Message us on WhatsApp
+      </a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Newsletter</h4>
+      <p>Subscribe for exclusive updates, new arrivals &amp; insider only discounts</p>
+      <div class="newsletter-form">
+        <input type="email" id="emailInput" placeholder="Enter your email address" />
+        <button onclick="subscribe()">Subscribe</button>
+      </div>
+      <p style="margin-top:18px; color:rgba(255,253,248,0.55); font-size:13px;">Follow Us</p>
+      <div class="social-icons">
+        <a href="https://www.instagram.com/maft_furniture/" target="_blank" title="Instagram">&#128247;</a>
+        <a href="https://www.facebook.com/people/Al-Shahiq-Carpentry/100080266914297/?locale=gn_PY#" target="_blank" title="Facebook">f</a>
+      </div>
+    </div>
+
+  </div>
+  <div class="footer-bottom">&copy; Al Shahiq Carpentry. All Rights Reserved.</div>
+</footer>
+
+<script> //this is where the JavaScript code starts. It is used to add interactivity to the webpage.
+
+  // Highlights active nav link when clicked
+  document.querySelectorAll("nav ul a").forEach(function(link) {
+    link.addEventListener("click", function() {
+      document.querySelectorAll("nav ul a").forEach(function(l) {
+        l.classList.remove("active");
+      });
+      this.classList.add("active");
+    });
+  });
+
+  // this function opens the lightbox when a gallery image is clicked
+  function openLightbox(img) {
+    document.getElementById("lightbox-img").src = img.src;
+    document.getElementById("lightbox").classList.add("open");
+  }
+
+  // Closes lightbox
+  function closeLightbox() {
+    document.getElementById("lightbox").classList.remove("open");
+  }
+
+  // footer subscribe button
+  function subscribe() {
+    var email = document.getElementById("emailInput").value;
+    if (email === "" || !email.includes("@")) {
+      alert("Please enter a valid email address.");
+    } else {
+      alert("Thank you for subscribing!");
+      document.getElementById("emailInput").value = "";
+    }
+  }
+</script>
+
+</body>
+</html>

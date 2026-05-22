@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- This helps us display out content in mobile browsing -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>About Us | Al Shahiq Carpentry</title>
+ 
+  <!-- Here im calling different font families directly from google -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Jost:wght@400;500&display=swap" 
+  rel="stylesheet"/>
+
+
+  <style>
+    /* css styling starting here */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: #F5F0E6;
+      font-family: Jost, sans-serif;
+      color: #4A3F30;
+    }
+
+    /* the navigation bar */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: #F5F0E6;
+      border-bottom: 1px solid #DDD5C4;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* i Added a light shadow to separate it from the page content when scrolling */
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 48px;
+    }
+
+    nav img { height: 52px; }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 4px;
+    }
+
+    nav ul a {
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      color: #4A3F30;
+      padding: 8px 16px;
+      border-radius: 999px;
+    }
+
+    nav ul a:hover,  /* Hovering effect */
+    nav ul a.active {
+      background: #B8983E;
+      color: #FFFDF8;
+    }
+
+    .thicker-hr {
+     border: none;       /* Removes default border */
+     height: 1px;        /* Set thickness */
+     background-color: #4B3621;
+     border-radius: 3px; 
+        margin: 32px auto; /* Add vertical spacing and center */
+    }
+
+    /* PAGE HEADER */
+    #page-header {
+      margin-top: 77px;
+      text-align: center;
+      padding: 48px 24px 2px;
+    }
+
+    #page-header h1 {
+      font-family: Cormorant Garamond, serif;
+      font-size: 40px;
+      color: #3B2F1E;
+    }
+
+    hr { border: none; border-top: 1px solid #DDD5C4; width: 85%; margin: 0 auto; }
+
+    /* ABOUT OUR WORK SECTION */
+    #about-work {
+      padding: 48px 64px;
+    }
+
+    .about-top {
+      display: flex;
+      gap: 28px;
+      margin-bottom: 24px;
+    }
+
+    .about-top img {
+      width: 300px;
+      height: 270px;
+      object-fit: cover;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+
+    .about-top-text h2 {
+      font-family: Cormorant Garamond, serif;
+      font-size: 30px;
+      color: #3B2F1E;
+      margin-bottom: 12px;
+    }
+
+    .about-top-text p {
+      font-size: 15px;
+      color: #7A6A52;
+      line-height: 1.8;
+    }
+
+    /* DESIGN CATEGORIES SECTION */
+    #design-categories {
+      padding: 48px 64px;
+    }
+
+    #design-categories h2 {
+      font-family: Cormorant Garamond, serif;
+      font-size: 32px;
+      color: #3B2F1E;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+    }
+
+    .category-grid img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 4px;
+      cursor: pointer;
+      display: block;
+    }
+
+    .category-grid img:hover { opacity: 0.88; }
+
+    /* image lightbox */
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(30,20,10,0.90);
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+    }
+
+    #lightbox.open { display: flex; }
+
+    #lightbox img {
+      max-width: 90vw;
+      max-height: 85vh;
+      border-radius: 6px;
+    }
+
+    #lightbox span {
+      position: absolute;
+      top: 20px; right: 30px;
+      font-size: 36px;
+      color: white;
+      cursor: pointer;
+    }
+
+    /* SEND FEEDBACK BUTTON */
+    #feedback {
+      text-align: center;
+      padding: 40px 24px 52px;
+    }
+
+    .button-feedback {
+      background: #B8983E;
+      color: #FFFDF8;
+      font-size: 15px;
+      font-weight: 500;
+      padding: 14px 40px;
+      border-radius: 999px;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .button-feedback:hover { background: #D4AF5A; }
+
+    /* page footer*/
+    footer {
+      background: #3B2F1E;
+      color: #FFFDF8;
+      padding: 48px 48px 24px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 32px;
+    }
+
+    .footer-col h4 {
+      font-family: Cormorant Garamond, serif;
+      font-size: 18px;
+      color: #D4AF5A;
+      margin-bottom: 14px;
+    }
+
+    .footer-col p,
+    .footer-col a {
+      font-size: 13px;
+      color: rgba(255,253,248,0.70);
+      text-decoration: none;
+      line-height: 1.9;
+    }
+
+    .contact-links { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+
+    .contact-links a:hover { color: #D4AF5A; }
+
+    .whatsapp-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #25D366;
+      color: white;
+      font-size: 13px;
+      padding: 10px 20px;
+      border-radius: 999px;
+      text-decoration: none;
+    }
+
+    .whatsapp-button:hover { background: #1ebe5a; }
+
+    .newsletter-form {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .newsletter-form input {
+      flex: 1;
+      padding: 10px 16px;
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.20);
+      border-radius: 999px;
+      color: white;
+      font-size: 13px;
+      font-family: Jost, sans-serif;
+      outline: none;
+    }
+
+    .newsletter-form input::placeholder { color: rgba(255,255,255,0.40); }
+
+    .newsletter-form button {
+      background: #B8983E;
+      color: white;
+      border: none;
+      border-radius: 999px;
+      padding: 10px 22px;
+      font-size: 13px;
+      font-family: Jost, sans-serif;
+      cursor: pointer;
+    }
+
+    .newsletter-form button:hover { background: #D4AF5A; }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.10);
+      padding-top: 16px;
+      text-align: center;
+      font-size: 12px;
+      color: rgba(255,253,248,0.40);
+    }
+
+    .social-icons { display: flex; gap: 10px; margin-top: 12px; }
+
+    .social-icons a {
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.10);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    .social-icons a:hover { background: #B8983E; }
+
+    /* phone version */
+    @media screen and (max-width: 600px) {
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 12px 20px;
+        gap: 10px;
+      }
+
+      nav ul { flex-wrap: wrap; gap: 4px; }
+
+      nav ul a { font-size: 12px; padding: 6px 10px; }
+
+      #page-header { margin-top: 110px; }
+
+      #page-header h1 { font-size: 28px; }
+
+      #about-work { padding: 32px 20px; }
+
+      .about-top { flex-direction: column; }
+
+      .about-top img { width: 100%; height: 220px; }
+
+      #design-categories { padding: 32px 20px; }
+
+      .category-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+
+      .category-grid img { height: 130px; }
+
+      .footer-grid { grid-template-columns: 1fr; }
+
+      footer { padding: 32px 20px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- navigation bar -->
+<nav>
+<img src="logo.jpg" alt="Al Shahiq Carpentry Logo">
+    <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- Page headerr -->
+<section id="page-header">
+  <h1>About Us</h1>
+</section>
+
+<hr class="thicker-hr" />
+
+<!-- ABOUT OUR WORK -->
+<section id="about-work">
+
+  <div class="about-top">
+    <img src="about1.jpg" alt="Bedroom image" onclick="openLightbox(this)">
+    <div class="about-top-text">
+      <h2>About Our Work</h2>
+      <p>Al Shahiq Carpentry is an Interior Design company based in the UAE that has built up a reputation around customers based upon reliability,
+         consistency of delivery and value. We offer comprehensive interior design, creating beautifully crafted interiors for our clients.</p>
+      
+      <p class="about-full-text">With over 25 years of experience, Al Shahiq Carpentry has completed more than 1000 projects. 
+        We have worked with commercial offices, retail units, supermarkets, hotels, saloon, restaurants, schools, healthcare and residential projects in Dubai, Abu Dhabi, Sharjah & Ajman. 
+        We are experienced in the planning, design, and delivery of all types of interior design projects. 
+        Whether you are renovating your villa or commercial space our interior design firm is a one-stop solution for interior consultancy and design, 
+        our team of interior designers and project managers are committed to delivering your project with full satisfactions.</p>
+    </div>
+  </div>
+
+</section>
+
+<!-- DESIGN CATEGORIES -->
+<section id="design-categories">
+  <h2>Design Categories</h2>
+  <hr class="thicker-hr">
+
+<div class="category-grid">
+    <!-- Added onclick to all images so images actually open in lightbox -->
+    <img src="about3.jpg" alt="Design Category image" onclick="openLightbox(this)">
+    <img src="about4.jpg" alt="Design Category image" onclick="openLightbox(this)">
+    <img src="about6.jpg" alt="Design Category image" onclick="openLightbox(this)">
+    <img src="about7.jpg" alt="Design Category image" onclick="openLightbox(this)">
+    <img src="about8.jpg" alt="Design Category image" onclick="openLightbox(this)">
+    <img src="about9.jpeg" alt="Design Category image" onclick="openLightbox(this)">
+  </div>
+</section>
+
+
+<!-- image lightbox -->
+<div id="lightbox">
+  <span onclick="closeLightbox()">&times;</span>
+  <img id="lightbox-img" src="" alt="" />
+</div>
+
+<hr class="thicker-hr">
+
+<!-- SEND FEEDBACK BUTTON -->
+<section id="feedback">
+  <a href="contact.html" class="button-feedback">Send Feedback</a>
+</section>
+
+<!-- Page footer -->
+<footer id="contact">
+  <div class="footer-grid">
+
+    <div class="footer-col">
+      <h4>Quick Contact</h4>
+      <div class="contact-links">
+        <a href="tel:+97156647974">&#128222; +971 56 647 9740</a>
+        <a href="mailto:info@alshahiqcarpentry.com">&#9993; info@alshahiqcarpentry.com</a>
+      </div>
+      <a class="whatsapp-button" href="https://wa.me/97156647974" target="_blank">
+        &#128172; Message us on WhatsApp
+      </a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Newsletter</h4>
+      <p>Subscribe for exclusive updates, new arrivals &amp; insider only discounts</p>
+      <div class="newsletter-form">
+        <input type="email" id="emailInput" placeholder="Enter your email address" />
+        <button onclick="subscribe()">Subscribe</button>
+      </div>
+      <p style="margin-top:18px; color:rgba(255,253,248,0.55); font-size:13px;">Follow Us</p>
+      <div class="social-icons">
+        <a href="https://www.instagram.com/maft_furniture/" target="_blank" title="Instagram">&#128247;</a>
+        <a href="https://www.facebook.com/people/Al-Shahiq-Carpentry/100080266914297/?locale=gn_PY#" target="_blank" title="Facebook">f</a>
+      </div>
+    </div>
+
+  </div>
+  <div class="footer-bottom">&copy; Al Shahiq Carpentry. All Rights Reserved.</div>
+</footer>
+
+<script>
+  // Highlights active nav link when clicked
+  document.querySelectorAll("nav ul a").forEach(function(link) {
+    link.addEventListener("click", function() {
+      document.querySelectorAll("nav ul a").forEach(function(l) {
+        l.classList.remove("active");
+      });
+      this.classList.add("active");
+    });
+  });
+
+  // Opens lightbox when a gallery image is clicked
+  function openLightbox(img) {
+    document.getElementById("lightbox-img").src = img.src;
+    document.getElementById("lightbox").classList.add("open");
+  }
+
+  // Closes lightbox
+  function closeLightbox() {
+    document.getElementById("lightbox").classList.remove("open");
+  }
+
+  //subscribe button
+  function subscribe() {
+    var email = document.getElementById("emailInput").value;
+    if (email === "" || !email.includes("@")) {
+      alert("Please enter a valid email address.");
+    } else {
+      alert("Thank you for subscribing!");
+      document.getElementById("emailInput").value = "";
+    }
+  }
+</script>
+
+</body>
+</html>

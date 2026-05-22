@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- This helps us display out content in mobile browsing -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Contact Us | Al Shahiq Carpentry</title>
+ 
+  <!-- Here im calling different font families directly from google -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Jost:wght@400;500&display=swap" 
+  rel="stylesheet"/>
+
+
+  <style>
+    /* css styling starting here */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: #F5F0E6;
+      font-family: Jost, sans-serif;
+      color: #4A3F30;
+    }
+
+    /* the navigation bar */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: #F5F0E6;
+      border-bottom: 1px solid #DDD5C4;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* i Added a light shadow to separate it from the page content when scrolling */
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 48px;
+    }
+
+    nav img { height: 52px; }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 4px;
+    }
+
+    nav ul a {
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      color: #4A3F30;
+      padding: 8px 16px;
+      border-radius: 999px;
+    }
+
+    nav ul a:hover,  /* Hovering effect */
+    nav ul a.active {
+      background: #B8983E;
+      color: #FFFDF8;
+    }
+     
+     /* MY favourite part */
+    .thicker-hr {
+            border: none;       /* Removes default border */
+            height: 1px;        /* Set thickness */
+            background-color: #4B3621;
+            border-radius: 3px; 
+                      
+        }
+    /* PAGE HEADER */
+    #page-header {
+      margin-top: 77px;
+      text-align: center;
+      padding: 48px 24px 32px;
+    }
+
+    #page-header h1 {
+      font-family: Cormorant Garamond, serif;
+      font-size: 40px;
+      color: #3B2F1E;
+    }
+
+    hr { border: none; border-top: 1px solid #DDD5C4; width: 85%; margin: 0 auto; }
+
+    /* google map styling */
+    #map {
+      padding: 0 64px;
+      margin-bottom: 40px;
+    }
+
+    #map iframe {
+      width: 100%;
+      height: 220px;
+      border: none;
+      border-radius: 4px;
+      display: block;
+    }
+
+    /* CONTACT BODY */
+    #contact-body {
+      padding: 0 64px 52px;
+      display: flex;
+      gap: 28px;
+      align-items: flex-start;
+    }
+
+    /* FORM */
+    .contact-form {
+      flex: 1;
+    }
+
+    .contact-form h2 {
+      font-family: Cormorant Garamond, serif;
+      font-size: 28px;
+      color: #3B2F1E;
+      margin-bottom: 6px;
+    }
+
+    .contact-form p {
+      font-size: 13px;
+      color: #7A6A52;
+      margin-bottom: 24px;
+      line-height: 1.7;
+    }
+
+    .contact-form label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: #4A3F30;
+      margin-bottom: 6px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 10px 14px;
+      background: #FFFDF8;
+      border: 1px solid #DDD5C4;
+      border-radius: 4px;
+      font-size: 13px;
+      font-family: Jost, sans-serif;
+      color: #4A3F30;
+      outline: none;
+      margin-bottom: 16px;
+    }
+
+    .contact-form textarea {
+      height: 110px;
+      resize: none;
+    }
+
+    .btn-submit {
+      background: #B8983E;
+      color: #FFFDF8;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 12px 32px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-family: Jost, sans-serif;
+    }
+
+    .btn-submit:hover { background: #D4AF5A; }
+
+    /* GET IN TOUCH right side */
+    .get-in-touch {
+      width: 260px;
+      flex-shrink: 0;
+      background: #FFFDF8;
+      border: 1px solid #DDD5C4;
+      border-radius: 6px;
+      padding: 24px 20px;
+    }
+
+    .get-in-touch h3 {
+      font-family: Cormorant Garamond, serif;
+      font-size: 22px;
+      color: #3B2F1E;
+      margin-bottom: 6px;
+    }
+
+    .get-in-touch p {
+      font-size: 12px;
+      color: #7A6A52;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .info-row {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      margin-bottom: 18px;
+    }
+
+    .info-row span.icon {
+      font-size: 16px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .info-row div {
+      font-size: 12px;
+      color: #4A3F30;
+      line-height: 1.7;
+    }
+
+    .info-row a {
+      color: #4A3F30;
+      text-decoration: none;
+    }
+
+    .info-row a:hover { color: #B8983E; }
+
+    /* page footer*/
+    footer {
+      background: #3B2F1E;
+      color: #FFFDF8;
+      padding: 48px 48px 24px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 32px;
+    }
+
+    .footer-col h4 {
+      font-family: Cormorant Garamond, serif;
+      font-size: 18px;
+      color: #D4AF5A;
+      margin-bottom: 14px;
+    }
+
+    .footer-col p,
+    .footer-col a {
+      font-size: 13px;
+      color: rgba(255,253,248,0.70);
+      text-decoration: none;
+      line-height: 1.9;
+    }
+
+    .contact-links { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+
+    .contact-links a:hover { color: #D4AF5A; }
+
+    .whatsapp-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #25D366;
+      color: white;
+      font-size: 13px;
+      padding: 10px 20px;
+      border-radius: 999px;
+      text-decoration: none;
+    }
+
+    .whatsapp-button:hover { background: #1ebe5a; }
+
+    .newsletter-form {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .newsletter-form input {
+      flex: 1;
+      padding: 10px 16px;
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.20);
+      border-radius: 999px;
+      color: white;
+      font-size: 13px;
+      font-family: Jost, sans-serif;
+      outline: none;
+    }
+
+    .newsletter-form input::placeholder { color: rgba(255,255,255,0.40); }
+
+    .newsletter-form button {
+      background: #B8983E;
+      color: white;
+      border: none;
+      border-radius: 999px;
+      padding: 10px 22px;
+      font-size: 13px;
+      font-family: Jost, sans-serif;
+      cursor: pointer;
+    }
+
+    .newsletter-form button:hover { background: #D4AF5A; }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.10);
+      padding-top: 16px;
+      text-align: center;
+      font-size: 12px;
+      color: rgba(255,253,248,0.40);
+    }
+
+    .social-icons { display: flex; gap: 10px; margin-top: 12px; }
+
+    .social-icons a {
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.10);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    .social-icons a:hover { background: #B8983E; }
+
+    /* phone version */
+    @media screen and (max-width: 600px) {
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 12px 20px;
+        gap: 10px;
+      }
+
+      nav ul { flex-wrap: wrap; gap: 4px; }
+
+      nav ul a { font-size: 12px; padding: 6px 10px; }
+
+      #page-header { margin-top: 110px; }
+
+      #page-header h1 { font-size: 28px; }
+
+      #map { padding: 0 20px; }
+
+      #contact-body {
+        flex-direction: column;
+        padding: 0 20px 40px;
+      }
+
+      .get-in-touch { width: 100%; }
+
+      .footer-grid { grid-template-columns: 1fr; }
+
+      footer { padding: 32px 20px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- classic navbar -->
+<nav>
+<img src="logo.jpg" alt="Al Shahiq Carpentry Logo">
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html" class="active">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- PAGE HEADER -->
+<section id="page-header">
+  <h1>Contact Us</h1>
+</section>
+
+<hr />
+
+<!--  map -->
+<div id="map">
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3606.3262078696956!2d55.4241088!3d25.326815399999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f595f01004641%3A0x71b615a41cb595c7!2sAl%20Shahiq%20Carpentry%20LLC%20SP%20%D9%85%D9%86%D8%AC%D8%B1%D8%A9%20%D8%A7%D9%84%D8%B4%D8%A7%D9%87%D9%82%20%D8%B0.%D9%85.%D9%85.%D8%B4.%D8%B4.%D9%85.%D9%88!5e0!3m2!1sen!2sae!4v1716070000000!5m2!1sen!2sae"
+    style="border:0; width: 100%; height: 450px;"
+    allowfullscreen=""
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+</div>
+
+<!-- CONTACT BODY -->
+<section id="contact-body">
+
+  <!-- FORM on the left -->
+  <div class="contact-form">
+    <h2>Contact</h2>
+    <p>Have a question or comment?<br/>Use the form below to send us a message or contact us by mail</p>
+
+    <label>Name</label>
+    <input type="text" id="formName" placeholder="" />
+
+    <label>Phone number</label>
+    <input type="tel" id="formPhone" placeholder="" />
+
+    <label>Email</label>
+    <input type="email" id="formEmail" placeholder="" />
+
+    <label>Comment</label>
+    <textarea id="formComment"></textarea>
+
+    <button class="btn-submit" onclick="submitForm()">Submit Contact</button>
+  </div>
+
+  <!-- GET IN TOUCH on the right -->
+  <div class="get-in-touch">
+    <h3>Get In Touch!</h3>
+    <p>We'd love to hear from you — please use the form to send us your message or ideas.</p>
+
+    <div class="info-row">
+      <span class="icon">&#128222;</span>
+      <div><a href="tel:+97156647974">TEL: +971 56 647 9740</a></div>
+    </div>
+
+    <div class="info-row">
+      <span class="icon">&#9993;</span>
+      <div><a href="mailto:customer@shahiq.com">customer@shahiq.com</a></div>
+    </div>
+
+    <div class="info-row">
+      <span class="icon">&#128205;</span>
+      <div><a href="https://www.google.com/maps/place/Al+Shahiq+Carpentry+LLC+SP+%D9%85%D9%86%D8%AC%D8%B1%D8%A9+%D8%A7%D9%84%D8%B4%D8%A7%D9%87%D9%82+%D8%B0.%D9%85.%D9%85.%D8%B4.%D8%B4.%D9%85.%D9%88%E2%80%AD/@25.3320953,55.4050765,17z/data=!3m1!4b1!4m6!3m5!1s0x3e5f595f01001641:0x71b615a41cb595c7!8m2!3d25.3320953!4d55.4050765!16s%2Fg%2F11bbwn4z1y?entry=ttu&g_ep=EgoyMDI2MDUxMy4wIKXMDSoASAFQAw%3D%3D" target="_blank">4 Street # 32 - Industrial Area 4 - Industrial Area - Sharjah</a></div>
+    </div>
+
+    <div class="info-row">
+      <span class="icon">&#128337;</span>
+      <div>Opening Hours<br/>SAT to THU: 8:00AM - 9:00PM<br/>Fri: Closed</div>
+    </div>
+  </div>
+
+</section>
+
+<!-- page footer -->
+<footer>
+  <div class="footer-grid">
+
+    <div class="footer-col">
+      <h4>Quick Contact</h4>
+      <div class="contact-links">
+        <a href="tel:+97156647974">&#128222; +971 56 647 9740</a>
+        <a href="mailto:info@alshahiqcarpentry.com">&#9993; info@alshahiqcarpentry.com</a>
+      </div>
+      <a class="btn-whatsapp" href="https://wa.me/97156647974" target="_blank">
+        &#128172; Message us on WhatsApp
+      </a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Newsletter</h4>
+      <p>Subscribe for exclusive updates, new arrivals &amp; insider only discounts</p>
+      <div class="newsletter-form">
+        <input type="email" id="emailInput" placeholder="Enter your email address" />
+        <button onclick="subscribe()">Subscribe</button>
+      </div>
+      <p style="margin-top:18px; color:rgba(255,253,248,0.55); font-size:13px;">Follow Us</p>
+      <div class="social-icons">
+        <a href="https://www.instagram.com/maft_furniture/" target="_blank" title="Instagram">&#128247;</a>
+        <a href="https://www.facebook.com/people/Al-Shahiq-Carpentry/100080266914297/?locale=gn_PY#" target="_blank" title="Facebook">f</a>
+      </div>
+    </div>
+
+  </div>
+  <div class="footer-bottom">&copy; Al Shahiq Carpentry. All Rights Reserved.</div>
+</footer>
+
+<script>
+  // Highlight active nav link when clicked
+  document.querySelectorAll("nav ul a").forEach(function(link) {
+    link.addEventListener("click", function() {
+      document.querySelectorAll("nav ul a").forEach(function(l) {
+        l.classList.remove("active");
+      });
+      this.classList.add("active");
+    });
+  });
+
+//new addition
+
+// Submit contact form
+  function submitForm() {
+    var name    = document.getElementById("formName").value.trim();
+    var phone   = document.getElementById("formPhone").value.trim();
+    var email   = document.getElementById("formEmail").value.trim();
+    var comment = document.getElementById("formComment").value.trim();
+
+    if (name === "" || phone === "" || email === "" || comment === "") {
+      alert("Please fill in all fields before submitting.");
+      return;
+    }
+
+    if (!email.includes("@")) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+
+    alert("Thank you, " + name + "! Your message has been submitted. We will get back to you soon.");
+
+    document.getElementById("formName").value    = "";
+    document.getElementById("formPhone").value   = "";
+    document.getElementById("formEmail").value   = "";
+    document.getElementById("formComment").value = "";
+  }
+
+  //  subscribe button
+  function subscribe() {
+    var email = document.getElementById("emailInput").value;
+    if (email === "" || !email.includes("@")) {
+      alert("Please enter a valid email address.");
+    } else {
+      alert("Thank you for subscribing!");
+      document.getElementById("emailInput").value = "";
+    }
+  }
+</script>
+
+</body>
+</html>
